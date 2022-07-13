@@ -15,7 +15,7 @@ export const FlexibleInput = ({fieldId, fieldValue, setFieldValue}) => {
   }
 
   return (
-      <div>
+      <div className="inputField">
         <label>{currentField.label}</label>
         <input
             name={currentField.name}

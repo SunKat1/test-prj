@@ -32,9 +32,7 @@ export const layoutData = {
             "fieldId": "228b905f-4a43-4a40-b829-0c6a04ad4782"
           }
         ]
-      }
-    ],
-    "rows1":[
+      },
       {
         "columns":[
           {

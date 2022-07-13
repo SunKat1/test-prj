@@ -17,17 +17,19 @@ const App = () => {
   const { layout } = useSelector(state => state.layout)
   const [fieldState, setFieldState] = useState({
     name: '',
-    age: ''
+    age: Number('')
   })
   const dispatch = useDispatch()
 
   useEffect(() => {
     makeRequest({
+      url: '/documentDefinition',
       dispatch,
       reducer: getDocumentDefinitionData,
       mockData: documentDefinitionData
     })
     makeRequest({
+      url: '/layout',
       dispatch,
       reducer: getLayoutData,
       mockData: layoutData
@@ -45,25 +47,15 @@ const App = () => {
 
   return (
   <AppLayout>
-    {/*{console.log(fieldState)}*/}
     <div className="App">
       {layout.header?.rows.map(row => (
         <RowContainer key={JSON.stringify(row)}>
           {row.columns.map(column => (
-              <ColumnContainer key={column.fieldId}>
-                {getFields(column.fieldId, column.type)}
+              <ColumnContainer key={column.fieldId || column.actionType}>
+                {getFields(column.fieldId, column.type, column.actionType, column.label)}
               </ColumnContainer>
           ))}
         </RowContainer>
-      ))}
-      {layout.header?.rows1.map(row => (
-          <RowContainer key={JSON.stringify(row)}>
-            {row.columns.map(column => (
-                <ColumnContainer key={JSON.stringify(column)}>
-                  {getFields('', column.type, column.actionType, column.label)}
-                </ColumnContainer>
-            ))}
-          </RowContainer>
       ))}
     </div>
   </AppLayout>
